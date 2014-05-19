@@ -1,0 +1,47 @@
+<div>
+  You have {{model.orders.length}} Orders. They are:
+  <ul>
+    <li ng-repeat="order in model.orders track by $index">
+      Order id: {{order.id}} <button ng-hide="model.newOrder" ng-click="showOrder(order)">Show</button>
+    </li>
+  </ul>
+  <br>
+
+
+
+  <!-- TODO: re-factor create new view -->
+  <div ng-hide="model.newOrder">
+    <button ng-click="newOrder()">Add new Order</button>
+  </div>
+  <div ng-show="model.newOrder">
+    <div><b>New Order:</b></div>
+    You have {{model.products.length}} products. They are:
+    <input type="search" ng-model="p" placeholder="filter..." />
+    <ul>
+      <li ng-repeat="product in model.products | filter:p">
+        <button ng-click="addProduct(product.code)">Add</button> | product: {{product.name}}
+      </li>
+    </ul>
+    <div><button ng-click="saveOrder()">Save</button></div>
+  </div>
+  <br>
+
+
+
+
+  <!-- TODO: refoctor this -->
+  <div ng-show="model.currentOrder">
+    <div ng-hide="model.newOrder">
+      <b>Current Order ID:</b>{{model.currentOrder.id}} | <button ng-click="showOrder(null)">Close</button>
+    </div>
+    <div ng-show="model.newOrder">
+      <b>Your new order:</b>
+    </div>
+    <ul>
+      <li ng-repeat="productCode in model.currentOrder.products track by $index">
+        product: {{model.productsView[productCode]}}
+      </li>
+    </ul>
+  </div>
+
+</div>

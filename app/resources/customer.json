@@ -1,0 +1,7 @@
+[
+    {
+        "id": 1,
+        "name": "Test Customer",
+        "orders": [1,2,3]
+    }
+]
